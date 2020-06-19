@@ -11,7 +11,7 @@ function App() {
             (prevState) => ({
               counter: prevState.counter + 1,
             }),
-            () => console.log(state)
+            () => console.log("inc")
           );
         }}
       >
@@ -19,15 +19,22 @@ function App() {
       </button>
       <button
         onClick={() => {
-          setState((prevState) => ({
-            counter: prevState.counter - 1,
-          }));
+          setState(
+            (prevState) => ({
+              counter: prevState.counter - 1,
+            }),
+            () => {
+              console.log("dec");
+            }
+          );
         }}
       >
         Decrement
       </button>
       <button
-        onClick={() => setState({ counter: 100 }, () => console.log(state))}
+        onClick={() =>
+          setState({ counter: 100 }, () => console.log("set to 100"))
+        }
       >
         set to 100
       </button>
