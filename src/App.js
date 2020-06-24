@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useState, useCallback, useRef } from "react";
+import React, { useEffect, useState, useCallback, useRef } from "react";
 import "./App.css";
 
 function App() {
@@ -62,12 +62,12 @@ const useSetState = (initialState = {}) => {
     [set]
   );
   let pendingCallbacks = useRef();
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (pendingCallbacks.current instanceof Function) {
       pendingCallbacks.current();
       pendingCallbacks.current = {};
     }
-  });
+  }, [state]);
   const setState = function (patch, cb) {
     updateState(patch);
     if (cb instanceof Function) {
